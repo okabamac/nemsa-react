@@ -1,0 +1,129 @@
+@import "./variables";
+
+.sideMenu {
+  position: fixed;
+  padding-top: 3.25em;
+  height: 100%;
+  width: 180px;
+  // background-color: $theme-color;
+  // background: $theme-color-gradient;
+  background: $theme-color;
+  background: $theme-color-gradient;
+  transition: $transition;
+  box-shadow: $box-shadow-gt;
+  font: $font-bold;
+  z-index: 999;
+}
+.active {
+  background: $active-color;
+  &:after {
+    position: absolute;
+    content: "";
+    width: 0px;
+    height: 0px;
+    border-right: solid 10px $primary-color;
+    border-bottom: solid 10px transparent;
+    border-top: solid 10px transparent;
+    top: 25%;
+    right: 0px;
+  }
+}
+
+.sideMenu ul {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  list-style-type: none;
+  color: $primary-color;
+}
+.sideMenu ul li {
+  margin: 0.8em 0;
+}
+
+.sideMenu ul li a {
+  position: relative;
+  display: block;
+  padding: 0.3em;
+  width: 100%;
+  height: 100%;
+}
+.sideMenu ul li:hover {
+  background: rgb(82, 107, 104);
+  transition: $transition;
+  opacity: 0.5;
+}
+
+.sideMenu ul li .link-icon {
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+.sideMenu ul li .link-text {
+  position: relative;
+  top: -8px;
+  left: 10px;
+}
+
+.hideSideBar {
+  width: 70px;
+  ul li a .link-text {
+    display: none;
+  }
+  ul li a .link-icon {
+    left: 10px;
+  }
+}
+.hamburger-icon {
+  position: relative;
+  top: 10px;
+  left: 0.8em;
+  margin-bottom: 20px;
+  width: 30px;
+  cursor: pointer;
+  display: block;
+  transition: $transition;
+
+  .line-1 {
+    width: 28px;
+  }
+
+  .line-2 {
+    width: 22px;
+    margin-right: 6px;
+  }
+
+  .line-3 {
+    width: 18px;
+    margin-right: 10px;
+  }
+
+  .btn-line {
+    height: 3px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 10%;
+    background: $primary-color;
+    transition: $transition;
+  }
+
+  &.close {
+    transform: rotate(180deg);
+    .btn-line {
+      //Line 1 rotate
+      &:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      //Line 2 Hide
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      //Line 2 Rotate
+      &:nth-child(3) {
+        width: 22px;
+        transform: rotate(-45deg) translate(7px, -5.5px);
+      }
+    }
+  }
+}

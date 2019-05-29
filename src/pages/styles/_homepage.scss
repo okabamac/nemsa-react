@@ -1,0 +1,324 @@
+@import "./variables";
+
+.homeContainer {
+  position: relative;
+  max-width: 80vw;
+  height: 88vh;
+  margin: auto;
+  top: 4em;
+  padding: 2em 0;
+  text-align: center;
+  box-shadow: $box-shadow-gt;
+}
+
+.cf:before,
+.cf:after {
+  content: "";
+  display: table;
+}
+
+.cf:after {
+  clear: both;
+}
+
+.cf {
+  zoom: 1;
+}
+
+/* Form wrapper styling */
+.search-wrapper {
+  width: 400px;
+  margin: 45px auto;
+}
+
+/* Form text input */
+
+.search-wrapper input {
+  width: 328px;
+  height: 40px;
+  padding: 10px 5px;
+  float: left;
+  font: $font-bold;
+  border: 0;
+  background: #eee;
+  color: #333;
+  border-radius: 3px 0 0 3px;
+}
+
+.search-wrapper input:focus {
+  outline: 0;
+  background: $primary-color;
+  box-shadow: $box-shadow-focus;
+}
+
+.search-wrapper input::-webkit-input-placeholder {
+  color: $color-placeholder;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.search-wrapper input:-moz-placeholder {
+  color: $color-placeholder;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.search-wrapper input:-ms-input-placeholder {
+  color: $color-placeholder;
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* Form submit button */
+.search-wrapper button {
+  overflow: visible;
+  position: relative;
+  float: right;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  height: 40px;
+  width: 72px;
+  font: $font-bold;
+  color: $primary-color;
+  text-transform: uppercase;
+  background: green;
+  border-radius: 0 3px 3px 0;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.search-wrapper button:hover {
+  background: $btn-color;
+}
+
+.search-wrapper button:active,
+.search-wrapper button:focus {
+  background: $btn-color;
+  outline: 0;
+}
+
+.search-wrapper button:before {
+  /* left arrow */
+  content: "";
+  position: absolute;
+  border-width: 8px 8px 8px 0;
+  border-style: solid solid solid none;
+  border-color: transparent green transparent;
+  top: 12px;
+  left: -6px;
+}
+
+.search-wrapper button:hover:before {
+  border-right-color: $btn-color;
+}
+
+.search-wrapper button:focus:before,
+.search-wrapper button:active:before {
+  border-right-color: $btn-color;
+}
+
+.search-wrapper button::-moz-focus-inner {
+  /* remove extra button spacing for Mozilla Firefox */
+  border: 0;
+  padding: 0;
+}
+
+.searchResult {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+.searchResult table {
+  margin: 0 auto;
+}
+.footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  margin: auto;
+}
+
+input[type="date"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+label {
+  position: absolute;
+  top: 0.35em;
+  left: 0;
+  padding-left: 2.4em;
+  transition: $transition;
+  opacity: 0.8;
+}
+
+select {
+  background: $primary-color;
+  width: 100%;
+  font-size: inherit;
+  color: $black;
+  border: none;
+  margin-top: 5px;
+  font: $font-bold;
+  border-bottom: 1px solid $black;
+  padding: 0 30px;
+}
+
+input:focus {
+  outline: none;
+  border: none;
+}
+select:focus {
+  outline: none;
+  border-bottom: 2px solid $black;
+}
+input:focus + label,
+input:valid + label,
+select:focus + label,
+select:valid + label {
+  transform: translate3d(-33px, -120%, 0);
+  opacity: 1;
+  font-size: 100%;
+}
+.entryForms {
+  position: relative;
+  width: 100%;
+  top: 22vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.entryForms .content {
+  position: relative;
+  width: 350px;
+  height: 450px;
+  box-shadow: $box-shadow-lt;
+  color: $black;
+}
+
+.cardHead {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  box-shadow: $box-shadow-lt;
+  text-align: center;
+}
+.nemsa_logo {
+  position: relative;
+  top: 0.3em;
+  width: 45px;
+  height: 40px;
+  border-radius: 50%;
+}
+.entryForms .contentForms {
+  position: relative;
+  padding: 1em;
+  width: 100%;
+}
+.entryForms form {
+  width: 100%;
+  height: 250px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1em;
+}
+.fieldSet {
+  padding: 0.5em 0.5em 1em 0.5em;
+  border: 1px solid rgb(247, 242, 242);
+}
+.entryForms form legend {
+  margin-bottom: 1em;
+  margin-left: 0.3em;
+  font: $font-bold;
+  font-size: 1.2em;
+}
+.entryForms form div {
+  margin: 0 auto;
+  position: relative;
+}
+
+.loginForm {
+  position: relative;
+  display: none;
+}
+form div input {
+  width: 100%;
+  margin-bottom: 3em;
+  height: 35px;
+  color: $black;
+  font: $font-bold;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #757070;
+  padding: 1em 0 1em 2.5em;
+  transition: $transition;
+}
+form div input:focus {
+  border-bottom: 2px solid #757070;
+  transition: $transition;
+}
+form div .icon {
+  position: absolute;
+  top: 0.2em;
+  font-size: 1.5em;
+  left: 0.3em;
+}
+div button {
+  width: 100%;
+  height: 40px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  color: $primary-color;
+  background: $btn-color;
+  background: $btn-color-gradient;
+  box-shadow: $box-shadow-lt;
+  border-radius: 5px;
+}
+
+.forgotPassword {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  text-align: center;
+  transition: $transition;
+}
+.forgotPassword hr {
+  margin-bottom: 0.5em;
+}
+
+.forgotPassword button {
+  width: 200px;
+  height: 32px;
+  outline: none;
+  cursor: pointer;
+  background: none;
+  color: $black;
+  border: none;
+  box-shadow: none;
+  transition: $transition;
+}
+
+.forgotPassword button:hover {
+  color: $primary-color;
+  background: $btn-color-gradient;
+}
+.resetPasswordForm {
+  position: absolute;
+  width: 90%;
+}
+
+.resetPasswordForm form .resetInput {
+  margin-top: 2.5em;
+}
+
+.resetPasswordForm form span {
+  opacity: 0.5;
+  font-size: 80%;
+}
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}

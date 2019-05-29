@@ -1,0 +1,51 @@
+@import "./variables";
+.hero {
+  position: fixed;
+  top: 0;
+  height: 3.5em;
+  width: 100%;
+  z-index: 1000;
+  background-color: $theme-color;
+  background: $theme-color-gradient;
+  border-bottom: 1px solid $primary-color;
+}
+
+.logoHead {
+  color: $primary-color;
+  display: block;
+  img {
+    width: 45px;
+    height: 40px;
+    margin: 0.5em;
+    display: inline-block;
+  }
+  h3 {
+    position: absolute;
+    top: 18px;
+    display: inline-block;
+    padding-right: 10px;
+    border-right: 3px solid $primary-color;
+  }
+  h4 {
+    position: absolute;
+    top: 20px;
+    left: 150px;
+    display: inline-block;
+  }
+}
+.heroText {
+  position: absolute;
+  top: 1.2em;
+  margin: auto 1em 0 0;
+  right: 0;
+  color: $primary-color;
+  transition: $transition;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+.hero-icon {
+  margin: 0 0 -8px 5px;
+  color: $thick-red;
+}

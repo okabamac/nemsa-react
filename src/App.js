@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import Homepage from './pages/Homepage';
+import LoginPage from './pages/LoginPage';
+import OfficeHome from './pages/StaffComponents/OfficeHome';
+import AdminHome from './pages/AdminComponents/AdminHome';
+import { ContextProvider } from './pages/Context';
+import './pages/styles/main.scss';
+
 
 function App() {
+  const [menuOpenState, setMenuOpenState] = useState(true);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Switch>
+      <Route exact path="/" component={Homepage} />
+      <Route path="/login" component={LoginPage} />
+      <ContextProvider
+        value={{
+          isMenuOpen: menuOpenState,
+          toggleMenu: () => setMenuOpenState(!menuOpenState),
+          stateChangeHandler: newState => setMenuOpenState(newState.isOpen)
+        }}
+      >
+        <Route path="/officeHome" component={OfficeHome} />
+        <Route path="/adminHome" component={AdminHome} />
+      </ContextProvider>
+    </Switch>
   );
 }
 

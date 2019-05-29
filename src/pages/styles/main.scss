@@ -1,0 +1,207 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+@import "./_hero.scss";
+@import "./_homepage.scss";
+@import "./sideMenu";
+
+main {
+  position: absolute;
+  font: $font-bold;
+  width: calc(100% - 180px);
+  left: 180px;
+  background: #f1f3f0;
+  padding: 3.3em 1em 4em 0.5em;
+  transition: $transition;
+  min-height: 100%;
+  &.collapsedMain {
+    width: calc(100% - 70px);
+    left: 70px;
+  }
+}
+
+.mainContent {
+  position: relative;
+  width: 95%;
+  top: 2em;
+  margin: auto;
+  min-height: 685px;
+  background: $primary-color;
+  box-shadow: $box-shadow-gt;
+  padding: 1em 1em 5em 1em;
+  h2 {
+    padding: 1em 0.5em;
+  }
+
+  .reportForms {
+    position: relative;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-gap: 40px;
+    padding: 1em 0.2em;
+
+    form {
+      border-top: 4px solid $text-color;
+      margin: auto;
+      box-shadow: $box-shadow-gt;
+    }
+  }
+  form {
+    border-top: 4px solid $text-color;
+    position: relative;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 40px;
+    padding: 1.5em;
+    box-shadow: $box-shadow-gt;
+
+    div {
+      position: relative;
+      height: 1.75em;
+      color: $black;
+
+      input,
+      select {
+        width: 100%;
+        height: 100%;
+      }
+      button {
+        width: 100%;
+        height: 35px;
+      }
+    }
+  }
+
+  .staffPage {
+    position: relative;
+    margin: auto;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-rows: 140px;
+
+    div {
+      text-align: center;
+      img {
+        height: 200px;
+        width: 100px;
+      }
+      form {
+        box-shadow: none;
+        div {
+          box-shadow: none;
+        }
+      }
+    }
+    .avatarDiv {
+      grid-row: auto / span 2;
+      line-height: 0;
+      box-shadow: $box-shadow-gt;
+      border-top: 4px solid $text-color;
+
+      form {
+        border-top: none;
+      }
+      input {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        color: black;
+        z-index: -1;
+      }
+      .uploadIcon {
+        margin-bottom: -5px;
+      }
+      label {
+        cursor: pointer;
+        top: 18px;
+        position: relative;
+      }
+
+      button {
+        height: 30px;
+      }
+    }
+    .infoDiv {
+      grid-column: auto / span 2;
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      div {
+        text-align: center;
+        box-shadow: $box-shadow-gt;
+      }
+
+      .head {
+        border-top: 4px solid $text-color;
+        position: relative;
+        width: 100%;
+        height: 50px;
+        box-shadow: none;
+        border-bottom: 3px solid #f1f3f0;
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .body {
+        box-shadow: none;
+        text-align: left;
+        line-height: 2;
+        padding: 1em;
+        opacity: 0.8;
+      }
+    }
+    .extraInfoDiv {
+      border-bottom: 4px solid $text-color;
+      grid-column: auto / span 2;
+      box-shadow: $box-shadow-gt;
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+      div {
+        font-size: 1em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+  .testForms {
+    div {
+      margin-bottom: 1.5em;
+    }
+    label {
+      position: absolute;
+      left: -36px;
+      top: -12px;
+    }
+    input,
+    select {
+      padding-left: 0.1em;
+    }
+    option:first-child {
+      color: #ccc;
+    }
+  }
+}
