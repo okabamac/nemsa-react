@@ -2,13 +2,32 @@
 
 .homeContainer {
   position: relative;
-  max-width: 80vw;
-  height: 88vh;
+  max-width: 100vw;
+  height: 100vh;
   margin: auto;
-  top: 4em;
-  padding: 2em 0;
   text-align: center;
-  box-shadow: $box-shadow-gt;
+  //background-color: #f1f3f0;
+  // background-image: url(../../images/em.jpg);
+  // background-attachment: fixed;
+  // background-position: left bottom;
+  // background-repeat: no-repeat;
+  //background-size: cover;
+  // .overlay {
+  //   position: absolute;
+  //   width: 100%;
+  //   height: 100%;
+  //   background: #000;
+  //   opacity: 0.9;
+  // }
+
+  .content {
+    padding: 15% 0 0 0;
+
+    h1 {
+      font-size: 2.5em;
+    }
+  }
+
 }
 
 .cf:before,
@@ -28,7 +47,7 @@
 /* Form wrapper styling */
 .search-wrapper {
   width: 400px;
-  margin: 45px auto;
+  margin: 20px auto;
 }
 
 /* Form text input */
@@ -36,13 +55,13 @@
 .search-wrapper input {
   width: 328px;
   height: 40px;
-  padding: 10px 5px;
+  padding: 10px 10px;
   float: left;
   font: $font-bold;
   border: 0;
   background: #eee;
   color: #333;
-  border-radius: 3px 0 0 3px;
+  border-radius: 5px 0 0 5px;
 }
 
 .search-wrapper input:focus {
@@ -226,7 +245,7 @@ select:valid + label {
   border: 1px solid rgb(247, 242, 242);
 }
 .entryForms form legend {
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
   margin-left: 0.3em;
   font: $font-bold;
   font-size: 1.2em;

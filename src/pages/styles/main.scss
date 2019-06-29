@@ -69,8 +69,8 @@ main {
     width: 100%;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-gap: 40px;
-    padding: 1.5em;
-    box-shadow: $box-shadow-gt;
+    padding: 3em 1.5em;
+    
 
     div {
       position: relative;

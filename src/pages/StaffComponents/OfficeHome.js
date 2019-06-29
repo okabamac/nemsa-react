@@ -45,12 +45,6 @@ function OfficeHome() {
               <span className="link-text">Recertification</span>
             </NavLink>
           </li>
-          <li>
-            <NavLink to="/officeHome/myProfile" activeClassName="active">
-              <Person className="link-icon" />{" "}
-              <span className="link-text">My Profile</span>
-            </NavLink>
-          </li>
         </ul>
       </SideMenu>
       <main className={ctx.isMenuOpen ? "" : "collapsedMain"}>
@@ -66,7 +60,6 @@ function OfficeHome() {
             path="/officeHome/recertification"
             component={Recertification}
           />
-          <Route exact path="/officeHome/myProfile" component={StaffBio} />
         </Switch>
       </main>
     </div>

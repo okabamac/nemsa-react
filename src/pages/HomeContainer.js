@@ -4,10 +4,13 @@ import SearchForm from './SearchForm';
  function HomeContainer () { 
 
    return (
-     <div className='homeContainer'>
-       <h1>Meter Verification Portal</h1>
-       <SearchForm />
-       <div className='footer'>
+     <div className="homeContainer">
+       <div className="overlay" />
+       <div className="content">
+         <h1>Meter Verification Portal</h1>
+         <SearchForm />
+       </div>
+       <div className="footer">
          <h5>Copyright &copy; 2019 NEMSA. All Rights Reserved</h5>
        </div>
      </div>

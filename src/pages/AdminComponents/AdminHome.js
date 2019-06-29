@@ -43,12 +43,12 @@ const ctx = useContext(ContextConsumer);
               <span className="link-text">Edit User</span>
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to="/adminHome/myProfile" activeClassName="active">
               <Person className="link-icon" />{" "}
               <span className="link-text">My Profile</span>
             </NavLink>
-          </li>
+          </li> */}
         </ul>
       </SideMenu>
       <main className={ctx.isMenuOpen ? "" : "collapsedMain"}>
@@ -56,7 +56,6 @@ const ctx = useContext(ContextConsumer);
           <Route exact path="/adminHome/addUser" component={AddUser} />
           <Route exact path="/adminHome/editUser" component={EditUser} />
           <Route exact path="/adminHome/reports" component={Reports} />
-          <Route exact path="/adminHome/myProfile" component={StaffBio} />
         </Switch>
       </main>
     </div>
