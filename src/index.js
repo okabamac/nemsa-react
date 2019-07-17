@@ -5,7 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 render (
-    <BrowserRouter>
+    <BrowserRouter basename='/build'>
     <App />
     </BrowserRouter>, document.getElementById('root')
 );
