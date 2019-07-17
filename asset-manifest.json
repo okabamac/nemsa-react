@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/nemsa-react/public/index.html/static/css/main.a75bca6e.chunk.css",
-    "main.js": "/nemsa-react/public/index.html/static/js/main.b6fe9129.chunk.js",
-    "main.js.map": "/nemsa-react/public/index.html/static/js/main.b6fe9129.chunk.js.map",
-    "runtime~main.js": "/nemsa-react/public/index.html/static/js/runtime~main.c304d2ca.js",
-    "runtime~main.js.map": "/nemsa-react/public/index.html/static/js/runtime~main.c304d2ca.js.map",
-    "static/js/2.2843e760.chunk.js": "/nemsa-react/public/index.html/static/js/2.2843e760.chunk.js",
-    "static/js/2.2843e760.chunk.js.map": "/nemsa-react/public/index.html/static/js/2.2843e760.chunk.js.map",
-    "index.html": "/nemsa-react/public/index.html/index.html",
-    "precache-manifest.d6afcc757760e7ba81536c70c3ffb806.js": "/nemsa-react/public/index.html/precache-manifest.d6afcc757760e7ba81536c70c3ffb806.js",
-    "service-worker.js": "/nemsa-react/public/index.html/service-worker.js",
-    "static/css/main.a75bca6e.chunk.css.map": "/nemsa-react/public/index.html/static/css/main.a75bca6e.chunk.css.map",
-    "static/media/girl.svg": "/nemsa-react/public/index.html/static/media/girl.038dbd32.svg",
-    "static/media/nemsa_logo1.png": "/nemsa-react/public/index.html/static/media/nemsa_logo1.049e3c1c.png"
+    "main.css": "/nemsa-react/public/static/css/main.a75bca6e.chunk.css",
+    "main.js": "/nemsa-react/public/static/js/main.4be0dc2f.chunk.js",
+    "main.js.map": "/nemsa-react/public/static/js/main.4be0dc2f.chunk.js.map",
+    "runtime~main.js": "/nemsa-react/public/static/js/runtime~main.643b258c.js",
+    "runtime~main.js.map": "/nemsa-react/public/static/js/runtime~main.643b258c.js.map",
+    "static/js/2.2843e760.chunk.js": "/nemsa-react/public/static/js/2.2843e760.chunk.js",
+    "static/js/2.2843e760.chunk.js.map": "/nemsa-react/public/static/js/2.2843e760.chunk.js.map",
+    "index.html": "/nemsa-react/public/index.html",
+    "precache-manifest.b918f3d2583d022d0118b68bced39501.js": "/nemsa-react/public/precache-manifest.b918f3d2583d022d0118b68bced39501.js",
+    "service-worker.js": "/nemsa-react/public/service-worker.js",
+    "static/css/main.a75bca6e.chunk.css.map": "/nemsa-react/public/static/css/main.a75bca6e.chunk.css.map",
+    "static/media/girl.svg": "/nemsa-react/public/static/media/girl.038dbd32.svg",
+    "static/media/nemsa_logo1.png": "/nemsa-react/public/static/media/nemsa_logo1.049e3c1c.png"
   }
 }
