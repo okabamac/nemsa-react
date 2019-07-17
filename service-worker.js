@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/nemsa-react/precache-manifest.17f7d328b8c91b31a86a293aba4118a4.js"
+  "/nemsa-react/precache-manifest.e8688d47b9eabd855f33ed27d9e31d2e.js"
 );
 
 self.addEventListener('message', (event) => {
