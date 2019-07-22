@@ -9,19 +9,27 @@ import Person from "@material-ui/icons/Person";
 import Hero from "../Hero";
 import SideMenu from "../SideMenu";
 import StaffBio from "../StaffBio";
+import ProtectedRoute from "../../ProtectedRoute";
 import AddUser from "../AdminComponents/AddUser";
 import EditUser from "../AdminComponents/EditUser";
 import Reports from "../AdminComponents/Reports";
+import auth from '../../Auth';
 
-
-function AdminHome() {
+function AdminHome(props) {
 const ctx = useContext(ContextConsumer);
-
   return (
     <div>
-      <Hero className="heroText" dir="/login" text='Engr. Rebecca Sidwell'>
-        Logout
-        <ExitToApp className='hero-icon'/>
+      <Hero className="heroText" dir="/login" text={localStorage.getItem('first_name') + ' ' + localStorage.getItem('last_name')}>
+        <div
+          onClick={() => {
+            auth.logout(() => {
+              props.history.push("/login");
+            });
+          }}
+        >
+          Logout
+          <ExitToApp className="hero-icon" />
+        </div>
       </Hero>
       <SideMenu>
         <ul>
@@ -53,9 +61,21 @@ const ctx = useContext(ContextConsumer);
       </SideMenu>
       <main className={ctx.isMenuOpen ? "" : "collapsedMain"}>
         <Switch>
-          <Route exact path="/adminHome/addUser" component={AddUser} />
-          <Route exact path="/adminHome/editUser" component={EditUser} />
-          <Route exact path="/adminHome/reports" component={Reports} />
+          <ProtectedRoute
+            exact
+            path="/adminHome/addUser"
+            component={AddUser}
+          />
+          <ProtectedRoute
+            exact
+            path="/adminHome/editUser"
+            component={EditUser}
+          />
+          <ProtectedRoute
+            exact
+            path="/adminHome/reports"
+            component={Reports}
+          />
         </Switch>
       </main>
     </div>

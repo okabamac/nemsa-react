@@ -341,3 +341,114 @@ div button {
 .hide {
   display: none;
 }
+
+.resultTable {
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+    color: #4a4a4d;
+    margin: auto;
+    top: 2em;
+    position: relative;
+    text-align: center;
+    font-family: 14px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  th,
+  td {
+    padding: 10px 15px;
+    vertical-align: middle;
+  }
+
+  thead {
+    background: #395870;
+    background: linear-gradient(#49708f, #293f50);
+    color: #fff;
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+
+  th:first-child {
+    border-top-left-radius: 5px;
+    text-align: left;
+  }
+
+  th:last-child {
+    border-top-right-radius: 5px;
+  }
+
+  tbody tr:nth-child(even) {
+    background: #f0f0f2;
+  }
+
+  td {
+    border-bottom: 1px solid #cecfd5;
+    border-right: 1px solid #cecfd5;
+  }
+
+  td:first-child {
+    border-left: 1px solid #cecfd5;
+  }
+}
+
+.message p {
+  animation: .9s shake infinite alternate;
+  animation-iteration-count: 1;
+}
+
+@keyframes shake {
+  0% { transform: skewX(-15deg); }
+  5% { transform: skewX(15deg); }
+  10% { transform: skewX(-15deg); }
+  15% { transform: skewX(15deg); }
+  20% { transform: skewX(0deg); }
+  100% { transform: skewX(0deg); }  
+}
+
+.loader {
+  height: 4px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: #ddd;
+}
+
+.loader:before {
+  display: block;
+  position: absolute;
+  content: "";
+  left: -200px;
+  width: 200px;
+  height: 4px;
+  background: $btn-color;
+  background: $btn-color-gradient;
+  animation: loading 2s linear infinite;
+}
+
+@keyframes loading {
+  from {
+    left: -200px;
+    width: 30%;
+  }
+
+  50% {
+    width: 30%;
+  }
+
+  70% {
+    width: 70%;
+  }
+
+  80% {
+    left: 50%;
+  }
+
+  95% {
+    left: 120%;
+  }
+
+  to {
+    left: 100%;
+  }
+}
+

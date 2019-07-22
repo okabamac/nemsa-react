@@ -4,6 +4,7 @@ import ContextConsumer from "../Context";
 import AlarmOn from "@material-ui/icons/AlarmOn";
 import MergeType from "@material-ui/icons/MergeType";
 import Update from "@material-ui/icons/Update";
+import ProtectedRoute from "../../ProtectedRoute";
 import Person from "@material-ui/icons/Person";
 import Hero from "../Hero";
 import SideMenu from "../SideMenu";
@@ -12,15 +13,32 @@ import TypeTest from "./TypeTest";
 import RoutineTest from "./RoutineTest";
 import Recertification from "./Recertification";
 import ExitToApp from "@material-ui/icons/ExitToApp";
+import auth from '../../Auth'
 
 
-function OfficeHome() {
+function OfficeHome(props) {
   const ctx = useContext(ContextConsumer);
   return (
     <div>
-      <Hero className="heroText" dir="/login" text="Engr. Rebecca Sidwell">
-        Logout
-        <ExitToApp className="hero-icon" />
+      <Hero
+        className="heroText"
+        dir="/login"
+        text={
+          localStorage.getItem("first_name") +
+          " " +
+          localStorage.getItem("last_name")
+        }
+      >
+        <div
+          onClick={() => {
+            auth.logout(() => {
+              props.history.push("/login");
+            });
+          }}
+        >
+          Logout
+          <ExitToApp className="hero-icon" />
+        </div>
       </Hero>
       <SideMenu>
         <ul>
@@ -49,13 +67,13 @@ function OfficeHome() {
       </SideMenu>
       <main className={ctx.isMenuOpen ? "" : "collapsedMain"}>
         <Switch>
-          <Route
+          <ProtectedRoute
             exact
             path="/officeHome/routineTest"
             component={RoutineTest}
           />
-          <Route exact path="/officeHome/typeTest" component={TypeTest} />
-          <Route
+          <ProtectedRoute exact path="/officeHome/typeTest" component={TypeTest} />
+          <ProtectedRoute
             exact
             path="/officeHome/recertification"
             component={Recertification}

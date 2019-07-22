@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState} from 'react';
 import ArrowBack from "@material-ui/icons/ArrowBack";
 import Home from "@material-ui/icons/Home";
 import nemsa from '../images/nemsa_logo1.png'
-import axios from 'axios';
-import ContextConsumer from './Context';
 import Hero from './Hero';
 import  ResetPassword from './ResetPassword';
 import LoginForm from './LoginForm';
