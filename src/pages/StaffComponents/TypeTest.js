@@ -1,37 +1,70 @@
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { Formik, Form, Field} from 'formik';
 
 export default function TypeTest() {
+  const [result, setResult] = useState(null);
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [isFound, setIsFound] = useState();
   return (
     <div className="mainContent">
       <h2>Type Test</h2>
       <Formik
         initialValues={{
-          vendorName: "",
+          vendor_name: "",
           country: "",
-          meterType: "",
-          meterNumber: "",
-          meterMake: "",
-          meterRating: "",
-          meterClass: "",
-          testCertificationNumber: "",
-          dateCertified: "",
-          vendorEmail: "",
-          vendorPhone: ""
+          meter_type: "",
+          meter_number: "",
+          meter_make: "",
+          meter_rating: "",
+          meter_class: "",
+          date_certified: "",
+          vendor_email: "",
+          vendor_phone_number: "",
+          state: "",
         }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
+        onSubmit={async (values, { setSubmitting }) => {
+          setSubmitting(false);
+          setIsLoading(true);
+          setIsFound(false);
+          setIsError(false);
+          try {
+            const headers = {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`
+            };
+            const response = await axios.post(
+              `https://nemsa-backend.herokuapp.com/api/v1/type/addType`,
+            values,
+              { headers: headers }
+            );
+            setIsFound(true);
+            if (!response) setIsFound(false);
+            setResult(response.data);
+            setIsLoading(false);
+          } catch (error) {
+            setIsError(true);
+            setIsLoading(false);
+            if (error.response.data.error)
+              setError(error.response.data.error);
+          }
         }}
       >
-        {({ isSubmitting }) => (
+        {({
+          touched,
+          values,
+          errors,
+          handleChange,
+          isSubmitting,
+          setFieldValue
+        }) => (
           <div className="testForms">
             <Form>
               <div>
-                <label htmlFor="vendorName">Vendor Name</label>
-                <Field type="text" name="vendorName" required />
+                <label htmlFor="vendor_name">Vendor Name</label>
+                <Field type="text" name="vendor_name" required />
               </div>
 
               <div>
@@ -311,7 +344,6 @@ export default function TypeTest() {
                 </Field>
               </div>
 
-
               <div>
                 <label htmlFor="state">State</label>
                 <Field name="state" component="select" required>
@@ -357,9 +389,9 @@ export default function TypeTest() {
               </div>
 
               <div>
-                <label htmlFor="meterType">Meter Type</label>
+                <label htmlFor="meter_type">Meter Type</label>
                 <Field
-                  name="meterType"
+                  name="meter_type"
                   component="select"
                   placeholder="Meter Type"
                   required
@@ -373,18 +405,18 @@ export default function TypeTest() {
                 </Field>
               </div>
               <div>
-                <label htmlFor="meterNumber">Meter Serial Number</label>
-                <Field name="meterNumber" type="number" required />
+                <label htmlFor="meter_number">Meter Serial Number</label>
+                <Field name="meter_number" type="number" required />
               </div>
               <div>
-                <label htmlFor="meterMake">Meter Make</label>
-                <Field type="text" name="meterMake" required />
+                <label htmlFor="meter_make">Meter Make</label>
+                <Field type="text" name="meter_make" required />
               </div>
 
               <div>
-                <label htmlFor="meterRating">Meter Rating</label>
+                <label htmlFor="meter_rating">Meter Rating</label>
                 <Field
-                  name="meterRating"
+                  name="meter_rating"
                   component="select"
                   placeholder="Meter Rating"
                   required
@@ -404,16 +436,15 @@ export default function TypeTest() {
               </div>
 
               <div>
-                <label htmlFor="meterClass">Meter Class</label>
+                <label htmlFor="meter_class">Meter Class</label>
                 <Field
-                  name="meterClass"
+                  name="meter_class"
                   component="select"
                   placeholder="Meter Class"
                   required
                 >
                   <option value="">Select Class</option>
                   <option value="1">1</option>
-                  <option value="2">2</option>
                   <option value="0.2S">0.2S</option>
                   <option value="0.5">0.5</option>
                   <option value="2">2</option>
@@ -421,26 +452,22 @@ export default function TypeTest() {
                 </Field>
               </div>
 
+
               <div>
-                <label htmlFor="testCertificationNumber">
-                  Test Certification Number
+                <label htmlFor="date_certified">Date Certified</label>
+                <Field type="date" name="date_certified" required />
+              </div>
+
+              <div>
+                <label htmlFor="vendor_email">Vendor Email Address</label>
+                <Field type="email" name="vendor_email" required />
+              </div>
+
+              <div>
+                <label htmlFor="vendor_phone_number">
+                  Vendor Phone Number
                 </label>
-                <Field type="text" name="testCertificationNumber" required />
-              </div>
-
-              <div>
-                <label htmlFor="dateCertified">Date Certified</label>
-                <Field type="date" name="dateCertified" required />
-              </div>
-
-              <div>
-                <label htmlFor="vendorEmail">Vendor Email Address</label>
-                <Field type="email" name="vendorEmail" required />
-              </div>
-
-              <div>
-                <label htmlFor="vendorPhone">Vendor Phone Number</label>
-                <Field type="text" name="vendorPhone" required />
+                <Field type="text" name="vendor_phone_number" required />
               </div>
 
               <div>
@@ -452,6 +479,36 @@ export default function TypeTest() {
           </div>
         )}
       </Formik>
+      <div
+        style={{
+          textAlign: "center",
+          margin: "auto",
+          position: "relative",
+          top: "2em",
+          fontSize: "1.3em"
+        }}
+      >
+        {isLoading ? (
+          <div className="spinner">
+            <div />
+            <div />
+            <div />
+            <div />
+          </div>
+        ) : (
+          <div>
+            {!isFound && isError ? (
+              <span className="errorMessage" style={{ color: "red" }}>
+                <p>{error}</p>
+              </span>
+            ) : (
+              <span className="message">
+                <p>{result && <span>{result.message}</span>}</p>
+              </span>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

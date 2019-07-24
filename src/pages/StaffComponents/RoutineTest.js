@@ -1,45 +1,124 @@
-import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import React, { useState, useEffect } from "react";
+import { Formik, Form, Field } from "formik";
+import axios from "axios";
+// import * as Yup from "yup";
 
-export default function TypeTest() {
+// const routineSchema = Yup.object().shape({
+//   // firstName: Yup.string()
+//   //   .min(2, "Too Short!")
+//   //   .max(50, "Too Long!")
+//   //   .required("Required"),
+//   // lastName: Yup.string()
+//   //   .min(2, "Too Short!")
+//   //   .max(50, "Too Long!")
+//   //   .required("Required"),
+//   // email: Yup.string()
+//   //   .email("Invalid email")
+//   //   .required("Required"),
+//   vendor_type: Yup.string().required("Required"),
+//   country: Yup.string().required("Required"),
+//   vendor_name: Yup.string().required("Required"),
+//   vendor_email: Yup.string()
+//     .email("Invalid email")
+//     .required("Required"),
+//   vendor_phone_number: Yup.string().required("Required"),
+//   yom: Yup.string().required("Required"),
+//   batch_id: Yup.string().required("Required"),
+//   batch_qty: Yup.string().required("Required"),
+//   state: Yup.string().required("Required"),
+//   meter_model: Yup.string().required("Required"),
+//   meter_class: Yup.string().required("Required"),
+//   meter_type: Yup.string().required("Required"),
+//   meter_number: Yup.string().required("Required"),
+//   date_of_routine_test: Yup.string().required("Required"),
+//   tariff_charges: Yup.string().required("Required")
+// });
+
+export default function RoutineTest() {
+  const [result, setResult] = useState(null);
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [isFound, setIsFound] = useState();
+
   return (
     <div className="mainContent">
       <h2>Routine Test</h2>
       <Formik
         initialValues={{
-          vendor: "",
+          vendor_type: "",
           country: "",
-          vendorName: "",
-          vendorEmail: "",
-          vendorPhoneNumber: "",
+          vendor_name: "",
+          vendor_email: "",
+          vendor_phone_number: "",
           yom: "",
-          batchID: "",
-          batchQty: "",
+          batch_id: "",
+          batch_qty: "",
           state: "",
-          meterModel: "",
-          meterClass: "",
-          meterType: "",
-          meterNumber: "",
-          dateOfRoutineTest: "",
-          tariffCharge: ""
+          meter_model: "",
+          meter_class: "",
+          meter_type: "",
+          meter_number: "",
+          date_of_routine_test: "",
+          tariff_charges: ""
         }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
+        // validationSchema={routineSchema}
+        onSubmit={async (values, { setSubmitting }) => {
+          setSubmitting(false);
+          setIsLoading(true);
+          setIsFound(false);
+          setIsError(false);
+          try {
+            const headers = {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`
+            };
+            const response = await axios.post(
+              `https://nemsa-backend.herokuapp.com/api/v1/routine/addRoutine`,
+              values,
+              { headers: headers }
+            );
+            setIsFound(true);
+            if (!response) setIsFound(false);
+            setResult(response.data);
+            setIsLoading(false);
+          } catch (error) {
+            setIsError(true);
+            setIsLoading(false);
+            if (error.response.data.error)
+              setError(error.response.data.error);
+          }
         }}
       >
-        {({ touched, errors, isSubmitting }) => (
+        {({
+          touched,
+          values,
+          errors,
+          handleChange,
+          isSubmitting,
+          setFieldValue
+        }) => (
           <div className="testForms">
             <Form>
               <div>
-                <label htmlFor="vendor">Vendor Type</label>
-                <Field name="vendor" component="select" required>
+                <label htmlFor="vendor_type">Vendor Type</label>
+                <Field
+                  name="vendor_type"
+                  component="select"
+                  onChange={e => {
+                    if (e.target.value === "local")
+                      setFieldValue("country", "NG");
+                    handleChange(e);
+                  }}
+                  required
+                >
                   <option value="">Select Vendor</option>
                   <option value="local">Local</option>
                   <option value="foreign">Foreign</option>
                 </Field>
+                {/* {errors.vendor_type && touched.vendor_type && (
+                  <p id="feedback">{errors.vendor_type}</p>
+                )} */}
               </div>
 
               <div>
@@ -144,7 +223,9 @@ export default function TypeTest() {
                   <option value="GW">Guinea-Bissau</option>
                   <option value="GY">Guyana</option>
                   <option value="HT">Haiti</option>
-                  <option value="HM">Heard Island and McDonald Islands</option>
+                  <option value="HM">
+                    Heard Island and McDonald Islands
+                  </option>
                   <option value="VA">Holy See (Vatican City State)</option>
                   <option value="HN">Honduras</option>
                   <option value="HK">Hong Kong</option>
@@ -298,7 +379,9 @@ export default function TypeTest() {
                   <option value="UY">Uruguay</option>
                   <option value="UZ">Uzbekistan</option>
                   <option value="VU">Vanuatu</option>
-                  <option value="VE">Venezuela, Bolivarian Republic of</option>
+                  <option value="VE">
+                    Venezuela, Bolivarian Republic of
+                  </option>
                   <option value="VN">Viet Nam</option>
                   <option value="VG">Virgin Islands, British</option>
                   <option value="VI">Virgin Islands, U.S.</option>
@@ -311,18 +394,20 @@ export default function TypeTest() {
               </div>
 
               <div>
-                <label htmlFor="vendorName">Vendor Name</label>
-                <Field type="text" name="vendorName" required />
+                <label htmlFor="vendor_name">Vendor Name</label>
+                <Field type="text" name="vendor_name" required />
               </div>
 
               <div>
-                <label htmlFor="vendorEmail">Vendor Email Address</label>
-                <Field type="email" name="vendorEmail" required />
+                <label htmlFor="vendor_email">Vendor Email Address</label>
+                <Field type="email" name="vendor_email" required />
               </div>
 
               <div>
-                <label htmlFor="vendorPhoneNumber">Vendor Phone Number</label>
-                <Field type="text" name="vendorPhoneNumber" required />
+                <label htmlFor="vendor_phone_number">
+                  Vendor Phone Number
+                </label>
+                <Field type="text" name="vendor_phone_number" required />
               </div>
 
               <div>
@@ -331,13 +416,13 @@ export default function TypeTest() {
               </div>
 
               <div>
-                <label htmlFor="batchID">Batch ID</label>
-                <Field type="text" name="batchID" required />
+                <label htmlFor="batch_id">Batch ID</label>
+                <Field type="text" name="batch_id" required />
               </div>
 
               <div>
-                <label htmlFor="batchQty">Batch Quantity</label>
-                <Field type="number" name="batchQty" required />
+                <label htmlFor="batch_qty">Batch Quantity</label>
+                <Field type="number" name="batch_qty" required />
               </div>
 
               <div>
@@ -385,12 +470,14 @@ export default function TypeTest() {
               </div>
 
               <div>
-                <label htmlFor="meterModel">Meter Model</label>
-                <Field name="meterModel" component="select" required>
+                <label htmlFor="meter_model">Meter Model</label>
+                <Field name="meter_model" component="select" required>
                   <option value="">Select Model</option>
                   <option value="E336">E336</option>
                   <option value="E316">E316</option>
-                  <option value="ZMG410CR4.000B.02 ">ZMG410CR4.000B.02</option>
+                  <option value="ZMG410CR4.000B.02 ">
+                    ZMG410CR4.000B.02
+                  </option>
                   <option value="MT880">MT880</option>
                   <option value="MK10E">MK10E</option>
                   <option value="ACE661B040">ACE661B040</option>
@@ -398,8 +485,8 @@ export default function TypeTest() {
               </div>
 
               <div>
-                <label htmlFor="meterClass">Meter Class</label>
-                <Field name="meterClass" component="select" required>
+                <label htmlFor="meter_class">Meter Class</label>
+                <Field name="meter_class" component="select" required>
                   <option value="">Select Class</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -408,8 +495,8 @@ export default function TypeTest() {
               </div>
 
               <div>
-                <label htmlFor="meterType">Meter Type</label>
-                <Field name="meterType" component="select" required>
+                <label htmlFor="meter_type">Meter Type</label>
+                <Field name="meter_type" component="select" required>
                   <option value="">Select Type</option>
                   <option value="4WIRE">4WIRE</option>
                   <option value="1PHASE2WIRES">1PHASE2WIRES</option>
@@ -420,18 +507,20 @@ export default function TypeTest() {
               </div>
 
               <div>
-                <label htmlFor="meterNumber">Meter Number</label>
-                <Field type="text" name="meterNumber" required />
+                <label htmlFor="meter_number">Meter Number</label>
+                <Field type="text" name="meter_number" required />
               </div>
 
               <div>
-                <label htmlFor="dateOfRoutineTest">Date of Routine Test</label>
-                <Field type="date" name="dateOfRoutineTest" required />
+                <label htmlFor="date_of_routine_test">
+                  Date of Routine Test
+                </label>
+                <Field type="date" name="date_of_routine_test" required />
               </div>
 
               <div>
-                <label htmlFor="tariffCharge">Tariff Charge</label>
-                <Field type="text" name="tariffCharge" required />
+                <label htmlFor="tariff_charge">Tariff Charge</label>
+                <Field type="text" name="tariff_charges" required />
               </div>
 
               <div>
@@ -443,6 +532,36 @@ export default function TypeTest() {
           </div>
         )}
       </Formik>
+      <div
+        style={{
+          textAlign: "center",
+          margin: "auto",
+          position: "relative",
+          top: "2em",
+          fontSize: "1.3em"
+        }}
+      >
+        {isLoading ? (
+          <div className="spinner">
+            <div />
+            <div />
+            <div />
+            <div />
+          </div>
+        ) : (
+          <div>
+            {!isFound && isError ? (
+              <span className="errorMessage" style={{ color: "red" }}>
+                <p>{error}</p>
+              </span>
+            ) : (
+              <span className="message">
+                <p>{result && <span>{result.message}</span>}</p>
+              </span>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -189,14 +189,16 @@ main {
   }
   .testForms {
     div {
-      margin-bottom: 1.5em;
+      margin-bottom: 2.5em;
     }
     label {
       position: absolute;
       left: -36px;
       top: -12px;
     }
-    input,
+    input {
+      padding-left: 0.5em;
+    }
     select {
       padding-left: 0.1em;
     }
