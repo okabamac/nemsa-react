@@ -1,7 +1,13 @@
-import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import React, { useState } from "react";
+import axios from "axios";
+import { Formik, Form, Field } from "formik";
 
-export default function TypeTest() {
+export default function Recertification() {
+  const [result, setResult] = useState(null);
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [isFound, setIsFound] = useState();
   return (
     <div className="mainContent">
       <h2>Type Test</h2>
@@ -9,31 +15,58 @@ export default function TypeTest() {
         initialValues={{
           disco: "",
           state: "",
-          businessUnitName: "",
-          customerName: "",
-          customerAddress: "",
-          customerPhoneNumber: "",
-          customerEmail: "",
+          business_unit_name: "",
+          customer_name: "",
+          customer_address: "",
+          customer_phone_number: "",
+          customer_email: "",
           yom: "",
           country: "",
-          tariffClassName: "",
-          meterType: "",
-          meterClass: "",
-          meterNumber: "",
-          meterModel: "",
-          dateOfRoutineTest: "",
-          dateOfLastRecertification: "",
-          tariffCharge: "",
-          testMeasurementError: ""
+          tariff_class_name: "",
+          meter_type: "",
+          meter_class: "",
+          meter_number: "",
+          meter_model: "",
+          date_of_routine_test: "",
+          date_of_last_recert: "",
+          tariff_charges: "",
+          test_measurement_error: ""
         }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
+        onSubmit={async (values, { setSubmitting }) => {
+          setSubmitting(false);
+          setIsLoading(true);
+          setIsFound(false);
+          setIsError(false);
+          try {
+            const headers = {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`
+            };
+            const response = await axios.post(
+              `https://nemsa-backend.herokuapp.com/api/v1/recert/addRecert`,
+              values,
+              { headers: headers }
+            );
+            setIsFound(true);
+            if (!response) setIsFound(false);
+            setResult(response.data);
+            setIsLoading(false);
+          } catch (error) {
+            setIsError(true);
+            setIsLoading(false);
+            if (error.response.data.error)
+              setError(error.response.data.error);
+          }
         }}
       >
-        {({ isSubmitting }) => (
+        {({
+          touched,
+          values,
+          errors,
+          handleChange,
+          isSubmitting,
+          setFieldValue
+        }) => (
           <div className="testForms">
             <Form>
               <div>
@@ -91,30 +124,30 @@ export default function TypeTest() {
               </div>
 
               <div>
-                <label htmlFor="businessUnitName">Business Unit Name</label>
-                <Field type="text" name="businessUnitName" required />
+                <label htmlFor="business_unit_name">Business Unit Name</label>
+                <Field type="text" name="business_unit_name" required />
               </div>
 
               <div>
-                <label htmlFor="customerName">Customer Name</label>
-                <Field type="text" name="customerName" required />
+                <label htmlFor="customer_name">Customer Name</label>
+                <Field type="text" name="customer_name" required />
               </div>
 
               <div>
-                <label htmlFor="customerAddress">Customer Address</label>
-                <Field type="text" name="customerAddress" required />
+                <label htmlFor="customer_address">Customer Address</label>
+                <Field type="text" name="customer_address" required />
               </div>
 
               <div>
-                <label htmlFor="customerPhoneNumber">
+                <label htmlFor="customer_phone_number">
                   Customer Phone Number
                 </label>
-                <Field type="text" name="customerPhoneNumber" required />
+                <Field type="text" name="customer_phone_number" required />
               </div>
 
               <div>
-                <label htmlFor="customerEmail">Customer Email</label>
-                <Field type="email" name="customerEmail" required />
+                <label htmlFor="customer_email">Customer Email</label>
+                <Field type="email" name="customer_email" required />
               </div>
 
               <div>
@@ -400,14 +433,14 @@ export default function TypeTest() {
               </div>
 
               <div>
-                <label htmlFor="tariffClassName">Tariff Class Name</label>
-                <Field type="text" name="tariffClassName" required />
+                <label htmlFor="tariff_class_name">Tariff Class Name</label>
+                <Field type="text" name="tariff_class_name" required />
               </div>
 
               <div>
-                <label htmlFor="meterType">Meter Type</label>
+                <label htmlFor="meter_type">Meter Type</label>
                 <Field
-                  name="meterType"
+                  name="meter_type"
                   component="select"
                   placeholder="Meter Type"
                   required
@@ -422,9 +455,9 @@ export default function TypeTest() {
               </div>
 
               <div>
-                <label htmlFor="meterClass">Meter Class</label>
+                <label htmlFor="meter_class">Meter Class</label>
                 <Field
-                  name="meterClass"
+                  name="meter_class"
                   component="select"
                   placeholder="Meter Class"
                   required
@@ -435,20 +468,19 @@ export default function TypeTest() {
                   <option value="2">2</option>
                   <option value="0.2S">0.2S</option>
                   <option value="0.5">0.5</option>
-                  <option value="2">2</option>
                   <option value="0.5S">0.5S</option>
                 </Field>
               </div>
 
               <div>
-                <label htmlFor="meterNumber">Meter Serial Number</label>
-                <Field type="text" name="meterNumber" required />
+                <label htmlFor="meter_number">Meter Serial Number</label>
+                <Field type="text" name="meter_number" required />
               </div>
 
               <div>
-                <label htmlFor="meterModel">Meter Model</label>
+                <label htmlFor="meter_model">Meter Model</label>
                 <Field
-                  name="meterModel"
+                  name="meter_model"
                   component="select"
                   placeholder="Meter Model"
                   required
@@ -467,35 +499,35 @@ export default function TypeTest() {
               </div>
 
               <div>
-                <label htmlFor="dateOfRoutineTest">
+                <label htmlFor="date_of_routine_test">
                   Date Meter was Routine Tested
                 </label>
-                <Field type="date" name="dateOfRoutineTest" required />
+                <Field type="date" name="date_of_routine_test" required />
               </div>
 
               <div>
-                <label htmlFor="dateOfLastRecertification">
+                <label htmlFor="date_of_last_recert">
                   Date of Last Recertification
                 </label>
                 <Field
                   type="date"
-                  name="dateOfLastRecertification"
+                  name="date_of_last_recert"
                   required
                 />
               </div>
 
               <div>
-                <label htmlFor="tariffCharge">
+                <label htmlFor="tariff_charges">
                   Tariff Charges(VAT inclusive)
                 </label>
-                <Field type="text" name="tariffCharge" required />
+                <Field type="text" name="tariff_charges" required />
               </div>
 
               <div>
-                <label htmlFor="testMeasurementError">
+                <label htmlFor="test_measurement_error">
                   Test Measurement Error
                 </label>
-                <Field type="text" name="testMeasurementError" required />
+                <Field type="text" name="test_measurement_error" required />
               </div>
 
               <div>
@@ -507,6 +539,36 @@ export default function TypeTest() {
           </div>
         )}
       </Formik>
+      <div
+        style={{
+          textAlign: "center",
+          margin: "auto",
+          position: "relative",
+          top: "2em",
+          fontSize: "1.3em"
+        }}
+      >
+        {isLoading ? (
+          <div className="spinner">
+            <div />
+            <div />
+            <div />
+            <div />
+          </div>
+        ) : (
+          <div>
+            {!isFound && isError ? (
+              <span className="errorMessage" style={{ color: "red" }}>
+                <p>{error}</p>
+              </span>
+            ) : (
+              <span className="message">
+                <p>{result && <span>{result.message}</span>}</p>
+              </span>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
