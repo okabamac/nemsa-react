@@ -147,9 +147,11 @@
   width: 100%;
   text-align: center;
 }
+
 .searchResult table {
   margin: 0 auto;
 }
+
 .footer {
   position: absolute;
   left: 0;
@@ -161,6 +163,7 @@
 input[type="date"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
+
 label {
   position: absolute;
   top: 0.35em;
@@ -186,18 +189,21 @@ input:focus {
   outline: none;
   border: none;
 }
+
 select:focus {
   outline: none;
   border-bottom: 2px solid $black;
 }
-input:focus + label,
-input:valid + label,
-select:focus + label,
-select:valid + label {
+
+input:focus+label,
+input:valid+label,
+select:focus+label,
+select:valid+label {
   transform: translate3d(-33px, -120%, 0);
   opacity: 1;
   font-size: 100%;
 }
+
 .entryForms {
   position: relative;
   width: 100%;
@@ -206,6 +212,7 @@ select:valid + label {
   align-items: center;
   justify-content: center;
 }
+
 .entryForms .content {
   position: relative;
   width: 350px;
@@ -221,6 +228,7 @@ select:valid + label {
   box-shadow: $box-shadow-lt;
   text-align: center;
 }
+
 .nemsa_logo {
   position: relative;
   top: 0.3em;
@@ -228,11 +236,13 @@ select:valid + label {
   height: 40px;
   border-radius: 50%;
 }
+
 .entryForms .contentForms {
   position: relative;
   padding: 1em;
   width: 100%;
 }
+
 .entryForms form {
   width: 100%;
   height: 250px;
@@ -240,16 +250,19 @@ select:valid + label {
   grid-template-columns: 1fr;
   grid-gap: 1em;
 }
+
 .fieldSet {
   padding: 0.5em 0.5em 1em 0.5em;
   border: 1px solid rgb(247, 242, 242);
 }
+
 .entryForms form legend {
   margin-bottom: 1.5em;
   margin-left: 0.3em;
   font: $font-bold;
   font-size: 1.2em;
 }
+
 .entryForms form div {
   margin: 0 auto;
   position: relative;
@@ -259,6 +272,7 @@ select:valid + label {
   position: relative;
   display: none;
 }
+
 form div input {
   width: 100%;
   margin-bottom: 3em;
@@ -271,16 +285,19 @@ form div input {
   padding: 1em 0 1em 2.5em;
   transition: $transition;
 }
+
 form div input:focus {
   border-bottom: 2px solid #757070;
   transition: $transition;
 }
+
 form div .icon {
   position: absolute;
   top: 0.2em;
   font-size: 1.5em;
   left: 0.3em;
 }
+
 div button {
   width: 100%;
   height: 40px;
@@ -302,6 +319,7 @@ div button {
   text-align: center;
   transition: $transition;
 }
+
 .forgotPassword hr {
   margin-bottom: 0.5em;
 }
@@ -322,6 +340,7 @@ div button {
   color: $primary-color;
   background: $btn-color-gradient;
 }
+
 .resetPasswordForm {
   position: absolute;
   width: 90%;
@@ -335,9 +354,11 @@ div button {
   opacity: 0.5;
   font-size: 80%;
 }
+
 .show {
   display: block;
 }
+
 .hide {
   display: none;
 }
@@ -397,12 +418,29 @@ div button {
 }
 
 @keyframes shake {
-  0% { transform: skewX(-15deg); }
-  5% { transform: skewX(15deg); }
-  10% { transform: skewX(-15deg); }
-  15% { transform: skewX(15deg); }
-  20% { transform: skewX(0deg); }
-  100% { transform: skewX(0deg); }  
+  0% {
+    transform: skewX(-15deg);
+  }
+
+  5% {
+    transform: skewX(15deg);
+  }
+
+  10% {
+    transform: skewX(-15deg);
+  }
+
+  15% {
+    transform: skewX(15deg);
+  }
+
+  20% {
+    transform: skewX(0deg);
+  }
+
+  100% {
+    transform: skewX(0deg);
+  }
 }
 
 .loader {
@@ -458,9 +496,10 @@ div button {
   opacity: 0;
   position: absolute;
   left: -5px;
-  background-color: rgb(27, 136, 13);
+  background: $btn-color;
+  background: $btn-color-gradient;
   border-radius: 50%;
-  animation: move 4s infinite cubic-bezier(.2, .64, .81, .23);
+  animation: move 2s infinite cubic-bezier(.2, .64, .81, .23);
 }
 
 .spinner div:nth-child(2) {
@@ -490,4 +529,10 @@ div button {
     left: 100%;
     opacity: 0;
   }
+}
+
+/*Horizontally center header and footer*/
+.tabulator-print-header,
+tabulator-print-footer {
+  text-align: center;
 }
