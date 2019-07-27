@@ -1,16 +1,18 @@
 {
   "files": {
-    "main.css": "/nemsa-react/static/css/main.82cea294.chunk.css",
-    "main.js": "/nemsa-react/static/js/main.6f01148f.chunk.js",
-    "main.js.map": "/nemsa-react/static/js/main.6f01148f.chunk.js.map",
+    "main.css": "/nemsa-react/static/css/main.b7a9553f.chunk.css",
+    "main.js": "/nemsa-react/static/js/main.cc4b55f1.chunk.js",
+    "main.js.map": "/nemsa-react/static/js/main.cc4b55f1.chunk.js.map",
     "runtime~main.js": "/nemsa-react/static/js/runtime~main.a93c51b0.js",
     "runtime~main.js.map": "/nemsa-react/static/js/runtime~main.a93c51b0.js.map",
-    "static/js/2.24603912.chunk.js": "/nemsa-react/static/js/2.24603912.chunk.js",
-    "static/js/2.24603912.chunk.js.map": "/nemsa-react/static/js/2.24603912.chunk.js.map",
+    "static/css/2.302e7826.chunk.css": "/nemsa-react/static/css/2.302e7826.chunk.css",
+    "static/js/2.7a217ff3.chunk.js": "/nemsa-react/static/js/2.7a217ff3.chunk.js",
+    "static/js/2.7a217ff3.chunk.js.map": "/nemsa-react/static/js/2.7a217ff3.chunk.js.map",
     "index.html": "/nemsa-react/index.html",
-    "precache-manifest.03354e5b1424e008db7e8b7f310eb788.js": "/nemsa-react/precache-manifest.03354e5b1424e008db7e8b7f310eb788.js",
+    "precache-manifest.88ee8953db3db5784f59017a3fe5380d.js": "/nemsa-react/precache-manifest.88ee8953db3db5784f59017a3fe5380d.js",
     "service-worker.js": "/nemsa-react/service-worker.js",
-    "static/css/main.82cea294.chunk.css.map": "/nemsa-react/static/css/main.82cea294.chunk.css.map",
+    "static/css/2.302e7826.chunk.css.map": "/nemsa-react/static/css/2.302e7826.chunk.css.map",
+    "static/css/main.b7a9553f.chunk.css.map": "/nemsa-react/static/css/main.b7a9553f.chunk.css.map",
     "static/media/girl.svg": "/nemsa-react/static/media/girl.038dbd32.svg",
     "static/media/nemsa_logo1.png": "/nemsa-react/static/media/nemsa_logo1.049e3c1c.png"
   }
