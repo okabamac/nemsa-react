@@ -2,7 +2,7 @@
   "name": "nemsa-2",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://okabamac.github.io/nemsa-react",
+  "homepage": ".",
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
